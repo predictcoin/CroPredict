@@ -65,7 +65,7 @@ async function getWalletProvider(wallet){
       break;
     case "binance":
       walletProvider = window.BinanceChain;
-    case "walletConnect":
+    case "walletconnect":
       walletProvider = new WalletConnectProvider.default({
         rpc: {
           1: "https://evm-cronos.crypto.org",
@@ -85,7 +85,6 @@ async function select_network(wallet) {
   provider = new ethers.providers.Web3Provider(walletProvider);
   try {
     await walletProvider.request({ method: "eth_requestAccounts" });
-    console.log("me");
     localStorage.setItem("wallet", wallet);
   } catch (err) {
     if (err.code == 4001) {
