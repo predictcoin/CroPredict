@@ -117,7 +117,7 @@ window.addEventListener("load", () => {
   let contractLinkEles = document.querySelectorAll(".contract-link");
   contractLinkEles.forEach(
     (ele) =>
-      (ele.href = `http://BscScan.com/address/${config.addresses.Farm}`)
+      (ele.href = `https://cronoscan.com/address/${config.addresses.Farm}`)
   );
 
   //Prediction handlers
