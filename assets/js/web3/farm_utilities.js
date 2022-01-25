@@ -40,7 +40,7 @@ Util.prototype.token0 = async function(token) {
 
 Util.prototype.getStakeApr = async function(id) {
   const token = await util.getPoolToken(id);
-  const totalPredPerYr = this.farm.predPerBlock.mul(28800).mul(365);
+  const totalPredPerYr = this.farm.predPerBlock.mul(17280).mul(365);
   const poolPredPerYr = this.pools[id].allocPoint.mul(totalPredPerYr);
   const numerator = poolPredPerYr.mul(100);
   const stakedPred = await token.balanceOf(config.addresses.Farm);

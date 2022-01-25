@@ -142,7 +142,7 @@ async function renderAPR(card, id, res, dollarValue) {
     if (Number(total$) <= 0) {
       apr = 0;
     } else {
-      const totalPredPerYr = util.farm.predPerBlock.mul(28800).mul(365);
+      const totalPredPerYr = util.farm.predPerBlock.mul(17280).mul(365);
       const poolPredPerYr = util.pools[id].allocPoint.mul(totalPredPerYr);
       const earnedPred = poolPredPerYr.div(util.farm.totalAllocPoint);
       let dollarValue = (
