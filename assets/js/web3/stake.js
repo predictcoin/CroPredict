@@ -119,15 +119,17 @@ async function renderTotalStaked(token, card, dollarValue) {
 }
 
 async function getStakeValue(total, token, dollarValue) {
+  console.log(dollarValue.toString());
   const totalSupply = await util.totalSupply(token);
   const token0 = await util.token0(token);
-  const predPosition = token0 === config.addresses.PRED ? 0 : 1;
+  const predPosition = String(token0).toLowerCase() === config.addresses.PRED ? 0 : 1;
   const predLiquidity = (await util.getReserves(token))[predPosition];
   const total$ = predLiquidity
     .mul(2)
     .mul(total)
     .div(totalSupply)
-    .mul(dollarValue);
+    .mul(dollarValue).mul(10**12);
+  console.log(ethers.utils.formatUnits(total$, 18 * 2), predLiquidity.toString());
   return ethers.utils.formatUnits(total$, 18 * 2);
 }
 
@@ -145,13 +147,17 @@ async function renderAPR(card, id, res, dollarValue) {
       const totalPredPerYr = util.farm.predPerBlock.mul(17280).mul(365);
       const poolPredPerYr = util.pools[id].allocPoint.mul(totalPredPerYr);
       const earnedPred = poolPredPerYr.div(util.farm.totalAllocPoint);
-      let dollarValue = (
-        await util.getAmountsOut(
-          ethers.utils.parseUnits("1"),
-          config.addresses.PRED,
-          config.addresses.BUSD
-        )
-      )[1];
+      let dollarValue =
+        config.chainId === 338
+          ? "1000000000000000000"
+          : (
+              await util.getAmountsOut(
+                ethers.utils.parseUnits("1", 18),
+                config.addresses.PRED,
+                config.addresses.MMF,
+                config.addresses.USDT
+              )
+            )[2];
 
       const busd = new ERC20();
       await busd.initialize(
@@ -161,7 +167,7 @@ async function renderAPR(card, id, res, dollarValue) {
       );
       dollarValue = ethers.utils.formatUnits(
         dollarValue.mul(earnedPred),
-        token.decimals + token.decimals
+        token.decimals + 6
       );
 
       apr = (dollarValue / total$) * 100;

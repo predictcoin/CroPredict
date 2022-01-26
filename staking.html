@@ -30,8 +30,10 @@
   <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js" type="application/javascript"></script>
   <!-- Validate -->
   <script src="//cdnjs.cloudflare.com/ajax/libs/validate.js/0.13.1/validate.min.js"></script>
-  <script type="text/javascript"
-    src="https://cdn.jsdelivr.net/npm/@walletconnect/web3-provider@1.7.0/dist/umd/index.min.js"></script>
+  <!-- WalletConnect -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@walletconnect/web3-provider@1.7.0/dist/umd/index.min.js"></script>
+  <!-- Crypto.com -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/deficonnect@1.1.7/dist/index.min.js"></script>
 </head>
 
 <body class="pageBgGrdient pageFill not-connected live">
@@ -40,7 +42,7 @@
       <nav class="navbar headerNavbar">
 
         <a class="navbar-brand p-0" href="index.html">
-          <img src="./assets/img/logo.png" style="max-height: 81px;" alt="logo" />
+          <img src="./assets/img/logo.png" style="max-height: 60px;" alt="logo" />
         </a>
 
         <div class="headerNav mx-auto">
@@ -56,17 +58,16 @@
               </a>
             </li>
             <li class="nav-item ">
-              <a class="nav-link" href="games.html">
+              <a class="nav-link" href="farming.html">
                 <span class="navIcon">
-                  <img src="./assets/img/icons/games.png" alt="farming" />
+                  <img src="./assets/img/icons/farming.png" alt="farming" />
                 </span>
                 <span class="navText">
-                  Games
+                  Farming
                 </span>
               </a>
             </li>
-            <!-- 
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <a class="nav-link" href="swap.html">
                 <span class="navIcon">
                   <img src="./assets/img/icons/swap.png" alt="voting" />
@@ -200,7 +201,7 @@
       <div class="web3-card loading farm not-enabled" data-pool="0">
         <div class="web3-card__heading">
           <div>
-            <img src="assets/img/coins/crp.jpg" alt="pred-icon">
+            <img src="assets/img/coins/crp.png" alt="pred-icon">
           </div>
           <div>
             <h4>CRP</h4>
@@ -461,7 +462,7 @@
       <div class="inner container">
         <div class="row align-items-center py-2">
           <div class="col-sm-12 col-md-6 col-lg-6 my-2">
-            <p class="text-black font-12 mb-0 text-center text-md-left">
+            <p class="text-white font-12 mb-0 text-center text-md-left">
               Copyright &copy; 2022 Cro Predict | All Rights Reserved
             </p>
           </div>
@@ -541,14 +542,14 @@
                 </span>
               </button> -->
 
-              <!-- <button onclick="select_network('walletconnect')" class="btn d-flex align-items-center justify-content-between" id="connect_wallet_walletconnect">
+              <button onclick="select_network('walletconnect')" class="btn d-flex align-items-center justify-content-between" id="connect_wallet_walletconnect">
                 <span class="walOptText">
                   Wallet Connect
                 </span>
                 <span class="walOptImg">
                   <img src="assets/img/wallet/walletconnect.svg" alt="walletconnect"/>
                 </span>
-              </button> -->
+              </button>
 
               <!-- <button onclick="select_network('binance')" class="btn d-flex align-items-center justify-content-between"
                 id="connect_wallet_binancechain">
