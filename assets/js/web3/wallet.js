@@ -152,7 +152,7 @@ async function initUI(address) {
 
     document.querySelector(
       ".btn--view"
-    ).href = `https://bscscan.com/address/${address}`;
+    ).href = `https://cronoscan.com/address/${address}`;
   }
 }
 
