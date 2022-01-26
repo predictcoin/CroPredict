@@ -31,14 +31,17 @@ async function fillTotal_APR(){
     const token = await util.getPoolToken(id);
     
 
-    // let dollarValue = (
-    //   await util.getAmountsOut(
-    //     ethers.utils.parseUnits("1", 18),
-    //     config.addresses.PRED,
-    //     config.addresses.BUSD
-    //   )
-    // )[1];
-    let dollarValue = 1;
+  let dollarValue =
+    config.chainId === 338
+      ? "1000000000000000000"
+      : (
+          await util.getAmountsOut(
+            ethers.utils.parseUnits("1", 18),
+            config.addresses.PRED,
+            config.addresses.MMF,
+            config.addresses.USDT
+          )
+        )[2];
     
     await renderAPR(ele, ele.dataset.pool, res, dollarValue);
     
