@@ -6351,7 +6351,7 @@ const config = {
     MMF: "0x97749c9B61F878a880DfE312d2594AE07AEd7656",
     USDT: "0x66e428c3f67a68878562e79A0234c1F83c208770",
   },
-  pools: ["PRED", "BUSD-PRED LP", "BNB-PRED LP"],
+  pools: ["PRED", "MMF-CRP LP", "BNB-PRED LP"],
   predictionTokens: {
     BNB: "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE",
     ETH: "0x2170Ed0880ac9A755fd29B2688956BD959F933F8",

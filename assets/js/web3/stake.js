@@ -16,7 +16,6 @@ async function populateCard(card) {
           )
         )[2];
 
-  console.log(dollarValue.toString());
 
   // request for pair data
   // const res = await (
@@ -87,7 +86,6 @@ async function populateCard(card) {
 
   dollarValue = ethers.utils.formatUnits(dollarValue, 6);
   let totalDollarValue = dollarValue * earned;
-  console.log(dollarValue, totalDollarValue);
   card.querySelector(".dollar-value").textContent = `$${Number(
     totalDollarValue
   ).toFixed(2)}`;
@@ -119,7 +117,7 @@ async function renderTotalStaked(token, card, dollarValue) {
 }
 
 async function getStakeValue(total, token, dollarValue) {
-  console.log(dollarValue.toString());
+  
   const totalSupply = await util.totalSupply(token);
   const token0 = await util.token0(token);
   const predPosition = String(token0).toLowerCase() === config.addresses.PRED ? 0 : 1;
@@ -129,7 +127,7 @@ async function getStakeValue(total, token, dollarValue) {
     .mul(total)
     .div(totalSupply)
     .mul(dollarValue).mul(10**12);
-  console.log(ethers.utils.formatUnits(total$, 18 * 2), predLiquidity.toString());
+  
   return ethers.utils.formatUnits(total$, 18 * 2);
 }
 
@@ -210,7 +208,7 @@ async function populateModal(event) {
     staked = ethers.utils.formatUnits(staked, token.decimals);
     stakedEle.textContent = formatNumber(staked);
     const title = modal.querySelector(".modal-title");
-    title.textContent = "Unstake PRED Token";
+    // title.textContent = "Unstake CRP Token";
   } else {
     // enter balance
     let balEle = modal.querySelector(".balance");
@@ -218,7 +216,7 @@ async function populateModal(event) {
     bal = ethers.utils.formatUnits(bal, token.decimals);
     balEle.textContent = formatNumber(bal);
     const title = modal.querySelector(".modal-title");
-    title.textContent = "Stake PRED Token";
+    // title.textContent = "Stake CRP Token";
   }
 }
 
