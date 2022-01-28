@@ -1,4 +1,12 @@
 async function populateUI(){
+  if(util.currentRound.epoch === "0"){
+    document
+      .querySelector("#prediction-section .predict")
+      .classList.add("ended");
+    document.querySelector(".predictions").classList.add("no-predictions");
+    document.querySelector("body").classList.remove("loading");
+    return;
+  } 
   await setProgress();
   setInterval(setProgress, 2000);
   setupTokens(util.currentRound, util);
@@ -13,8 +21,6 @@ async function populateUI(){
   } else{
     document.querySelector(".predictions").classList.remove("no-predictions");
   }
-
-  document.querySelector("body").classList.remove("loading");
 
   if(util.closeTimestamp.toNumber() <= (Date.now()/1000)){
     document.querySelector("#prediction-section .predict").classList.add("ended");
