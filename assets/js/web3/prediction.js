@@ -24,6 +24,12 @@ async function populateUI(){
 }
 
 function fillTotal_APR(){
+  if(util.currentRound.epoch === "0"){
+    document
+      .querySelector("#prediction-section .predict")
+      .classList.add("ended");
+    return;
+  }
   setProgress();
   setupTokens(util.currentRound, util);
   renderTokenInfo();

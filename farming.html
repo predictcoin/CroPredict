@@ -2,136 +2,150 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>CroPredict - Farming </title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-  
-    <!-- Favicons -->
-    <link href="assets/img/icc.png" rel="icon">
-    <!-- <link href="images/favicon.png" rel="icon"> -->
+  <title>CroPredict - Farming </title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Favicons -->
+  <link href="assets/img/icc.png" rel="icon">
+  <!-- <link href="images/favicon.png" rel="icon"> -->
 
 
-    <!-- Css Links -->
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/all.min.css">
-    <link rel="stylesheet" href="assets/css/jquery.growl.css">
-    <link rel="stylesheet" href="assets/css/custom.css">
-    <link rel="stylesheet" href="assets/css/web3.css">
-    <link rel="stylesheet" href="assets/css/css2.css">
-    <link rel="stylesheet" href="https://unpkg.com/placeholder-loading/dist/css/placeholder-loading.min.css">
-    <!-- Google Font -->
-    <link rel="preconnect" href="https://fonts.gstatic.com/">
-    <!-- <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet"> -->
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/gijgo.min.js"></script>
-    <!-- <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script> -->
-    <link href="unpkg.com/gijgo%401.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
-    <!-- Etherjs -->
-    <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js" type="application/javascript"></script>
-    <!-- Validate -->
-    <script src="//cdnjs.cloudflare.com/ajax/libs/validate.js/0.13.1/validate.min.js"></script>
-    <!-- WalletConnect -->
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@walletconnect/web3-provider@1.7.0/dist/umd/index.min.js"></script>
-    <!-- Crypto.com -->
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/deficonnect@1.1.7/dist/index.min.js"></script>
-  </head> 
-  <body class="pageBgGrdient pageFill not-connected">
-        <header class="headerStatic">
-      <div class="container-fluid inner">
-        <nav class="navbar headerNavbar">
-        
-          <a class="navbar-brand p-0" href="index.html">
-            <img src="assets/img/logo.png" style="max-height: 60px;" alt="logo" />
-          </a>
-        
-          <div class="headerNav mx-auto">
-            <ul class="navbar-nav flex-lg-row">
-              <li class="nav-item ">
-                <a class="nav-link" href="staking.html">
-                  <span class="navIcon">
-                    <img src="assets/img/icons/staking.png" alt="staking" />
-                  </span>
-                  <span class="navText">
-                    Staking
-                  </span>
-                </a>
-              </li>
-              <li class="nav-item active">
-                <a class="nav-link" href="farming.html">
-                  <span class="navIcon">
-                    <img src="assets/img/icons/farming.png" alt="farming" />
-                  </span>
-                  <span class="navText">
-                    Farming
-                  </span>
-                </a>
-              </li>
-		        <!-- <li class="nav-item">
-                <a class="nav-link" href="swap.html">
-                  <span class="navIcon">
-                    <img src="assets/images/icons/swap.png" alt="voting" />
-                  </span>
-                  <span class="navText">
-                    Swap
-                  </span>
-                </a>
-              </li>
-              <li class="nav-item ">
-                <a class="nav-link" href="voting.html">
-                  <span class="navIcon">
-                    <img src="assets/images/icons/voting.png" alt="voting" />
-                  </span>
-                  <span class="navText">
-                    Voting
-                  </span>
-                </a>
-              </li>
-              <li class="nav-item ">
+  <!-- Css Links -->
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/css/all.min.css">
+  <link rel="stylesheet" href="assets/css/jquery.growl.css">
+  <link rel="stylesheet" href="assets/css/custom.css">
+  <link rel="stylesheet" href="assets/css/web3.css">
+  <link rel="stylesheet" href="assets/css/prediction.css">
+  <link rel="stylesheet" href="assets/css/css2.css">
+  <link rel="stylesheet" href="https://unpkg.com/placeholder-loading/dist/css/placeholder-loading.min.css">
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.gstatic.com/">
+  <!-- <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet"> -->
+  <script src="assets/js/jquery.min.js"></script>
+  <script src="assets/js/gijgo.min.js"></script>
+  <!-- <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script> -->
+  <link href="unpkg.com/gijgo%401.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+  <!-- Etherjs -->
+  <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js" type="application/javascript"></script>
+  <!-- Validate -->
+  <script src="//cdnjs.cloudflare.com/ajax/libs/validate.js/0.13.1/validate.min.js"></script>
+  <!-- WalletConnect -->
+  <script type="text/javascript"
+    src="https://cdn.jsdelivr.net/npm/@walletconnect/web3-provider@1.7.0/dist/umd/index.min.js"></script>
+  <!-- Crypto.com -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/deficonnect@1.1.7/dist/index.min.js"></script>
+</head>
+
+<body class="pageBgGrdient pageFill not-connected">
+  <header class="headerStatic">
+    <div class="container-fluid inner">
+      <nav class="navbar headerNavbar">
+
+        <a class="navbar-brand p-0" href="index.html">
+          <img src="./assets/img/logo.png" style="max-height: 60px;" alt="logo" />
+        </a>
+
+        <div class="headerNav mx-auto">
+          <ul class="navbar-nav flex-lg-row">
+            <li class="nav-item active">
+              <a class="nav-link" href="staking.html">
+                <span class="navIcon">
+                  <img src="./assets/img/icons/staking.png" alt="staking" />
+                </span>
+                <span class="navText">
+                  Staking
+                </span>
+              </a>
+            </li>
+            <li class="nav-item ">
+              <a class="nav-link" href="farming.html">
+                <span class="navIcon">
+                  <img src="./assets/img/icons/farming.png" alt="farming" />
+                </span>
+                <span class="navText">
+                  Farming
+                </span>
+              </a>
+            </li>
+            <li class="nav-item ">
                 <a class="nav-link" href="prediction.html">
                   <span class="navIcon">
-                    <img src="assets/images/icons/prediction.png" alt="prediction" />
+                    <img src="assets/img/icons/prediction.png" alt="prediction" />
                   </span>
                   <span class="navText">
                     Price Prediction
                   </span>
                 </a>
-              </li>
-		                            <li class="nav-item">
-                            <a class="nav-link" href="bid.html">
-                                <span class="navIcon">
-                                    <img src="assets/images/icons/bid.png" alt="prediction" />
-                                </span>
-                                <span class="navText">
-                                    Predict $BID
-                                </span>
-                            </a>
-                        </li>
-		                            <li class="nav-item  ">
-                            <a class="nav-link" href="sports.html">
-                                <span class="navIcon">
-                                    <img src="assets/images/icons/sports.png" alt="prediction" />
-                                </span>
-                                <span class="navText">
-                                    Sports Prediction
-                                </span>
-                            </a>
-                        </li>
-              <li class="nav-item ">
-                <a class="nav-link" href="ipo.html">
-                  <span class="navIcon">
-                    <img src="assets/images/icons/chart2.png" alt="prediction" />
-                  </span>
-                  <span class="navText">
-                    IPO
-                  </span>
-                </a>
-              </li> -->
-            </ul>
-          </div>
-          
-          <div class="headerRight">
-            <!-- id="connect_metamask" -->
-            <button class="btn btn-wallet wallet-not-connected" data-toggle="modal" data-target="#walConnect" >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="games.html">
+                <span class="navIcon">
+                  <img src="./assets/img/icons/games.png" alt="voting" />
+                </span>
+                <span class="navText">
+                  Games
+                </span>
+              </a>
+            </li>
+            <!-- 
+            <li class="nav-item ">
+              <a class="nav-link" href="voting.html">
+                <span class="navIcon">
+                  <img src="./assets/img/icons/voting.png" alt="voting" />
+                </span>
+                <span class="navText">
+                  Voting
+                </span>
+              </a>
+            </li>
+            <li class="nav-item ">
+              <a class="nav-link" href="prediction.html">
+                <span class="navIcon">
+                  <img src="assets/img/icons/prediction.png" alt="prediction" />
+                </span>
+                <span class="navText">
+                  Price Prediction
+                </span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="bid.html">
+                <span class="navIcon">
+                  <img src="assets/img/icons/bid.png" alt="prediction" />
+                </span>
+                <span class="navText">
+                  Predict $BID
+                </span>
+              </a>
+            </li>
+            <li class="nav-item  ">
+              <a class="nav-link" href="sports.html">
+                <span class="navIcon">
+                  <img src="assets/img/icons/sports.png" alt="prediction" />
+                </span>
+                <span class="navText">
+                  Sports Prediction
+                </span>
+              </a>
+            </li>
+            <li class="nav-item ">
+              <a class="nav-link" href="ipo.html">
+                <span class="navIcon">
+                  <img src="assets/img/icons/chart2.png" alt="prediction" />
+                </span>
+                <span class="navText">
+                  IPO
+                </span>
+              </a>
+            </li> -->
+          </ul>
+        </div>
+
+        <div class="headerRight">
+          <!-- id="connect_metamask" -->
+          <button class="btn btn-wallet wallet-not-connected" data-toggle="modal" data-target="#walConnect">
             <span class="btn-wicon">
               <img src="assets/img/icons/wallet.png" alt="wallet" />
             </span>
