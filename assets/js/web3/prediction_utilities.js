@@ -26,7 +26,9 @@ Util.prototype.initialize = async function() {
     this.currentRound = {epoch: "0"};
     return;
   }
+  console.log(currentRound.toString())
   this.currentRound = await this.prediction.getRound(currentRound);
+  console.log(this.currentRound);
   this.lockedTimestamp = this.currentRound.lockedTimestamp;
   this.closeTimestamp = this.currentRound.closeTimestamp;
   this.intervalSeconds = await this.prediction.intervalSeconds();

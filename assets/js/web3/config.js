@@ -2970,12 +2970,6 @@ const config = {
             name: "token",
             type: "address",
           },
-          {
-            indexed: false,
-            internalType: "address",
-            name: "oracle",
-            type: "address",
-          },
         ],
         name: "TokenAdded",
         type: "event",
@@ -3006,12 +3000,6 @@ const config = {
             indexed: false,
             internalType: "address",
             name: "token",
-            type: "address",
-          },
-          {
-            indexed: false,
-            internalType: "address",
-            name: "oracle",
             type: "address",
           },
         ],
@@ -3103,11 +3091,6 @@ const config = {
             name: "_tokens",
             type: "address[]",
           },
-          {
-            internalType: "address[]",
-            name: "_oracles",
-            type: "address[]",
-          },
         ],
         name: "addTokens",
         outputs: [],
@@ -3188,6 +3171,19 @@ const config = {
       },
       {
         inputs: [],
+        name: "crp",
+        outputs: [
+          {
+            internalType: "contract IERC20Upgradeable",
+            name: "",
+            type: "address",
+          },
+        ],
+        stateMutability: "view",
+        type: "function",
+      },
+      {
+        inputs: [],
         name: "currentEpoch",
         outputs: [
           {
@@ -3200,7 +3196,18 @@ const config = {
         type: "function",
       },
       {
-        inputs: [],
+        inputs: [
+          {
+            internalType: "address[]",
+            name: "_tokens",
+            type: "address[]",
+          },
+          {
+            internalType: "int256[]",
+            name: "prices",
+            type: "int256[]",
+          },
+        ],
         name: "endRound",
         outputs: [],
         stateMutability: "nonpayable",
@@ -3255,16 +3262,6 @@ const config = {
             internalType: "int256[]",
             name: "closePrices",
             type: "int256[]",
-          },
-          {
-            internalType: "uint256[]",
-            name: "lockedOracleIds",
-            type: "uint256[]",
-          },
-          {
-            internalType: "uint256[]",
-            name: "closeOracleIds",
-            type: "uint256[]",
           },
           {
             internalType: "uint256[]",
@@ -3401,6 +3398,11 @@ const config = {
         inputs: [
           {
             internalType: "address",
+            name: "_crp",
+            type: "address",
+          },
+          {
+            internalType: "address",
             name: "_adminAddress",
             type: "address",
           },
@@ -3427,11 +3429,6 @@ const config = {
           {
             internalType: "uint256",
             name: "_betAmount",
-            type: "uint256",
-          },
-          {
-            internalType: "uint256",
-            name: "_oracleUpdateAllowance",
             type: "uint256",
           },
           {
@@ -3501,11 +3498,16 @@ const config = {
         inputs: [
           {
             internalType: "address",
-            name: "loser",
+            name: "preder",
             type: "address",
           },
+          {
+            internalType: "uint256",
+            name: "round",
+            type: "uint256",
+          },
         ],
-        name: "lostLastRound",
+        name: "lostRound",
         outputs: [
           {
             internalType: "bool",
@@ -3522,51 +3524,6 @@ const config = {
         outputs: [
           {
             internalType: "address",
-            name: "",
-            type: "address",
-          },
-        ],
-        stateMutability: "view",
-        type: "function",
-      },
-      {
-        inputs: [],
-        name: "oracleLatestRoundId",
-        outputs: [
-          {
-            internalType: "uint256",
-            name: "",
-            type: "uint256",
-          },
-        ],
-        stateMutability: "view",
-        type: "function",
-      },
-      {
-        inputs: [],
-        name: "oracleUpdateAllowance",
-        outputs: [
-          {
-            internalType: "uint256",
-            name: "",
-            type: "uint256",
-          },
-        ],
-        stateMutability: "view",
-        type: "function",
-      },
-      {
-        inputs: [
-          {
-            internalType: "address",
-            name: "",
-            type: "address",
-          },
-        ],
-        name: "oracles",
-        outputs: [
-          {
-            internalType: "contract AggregatorV3Interface",
             name: "",
             type: "address",
           },
@@ -3602,19 +3559,6 @@ const config = {
             internalType: "bool",
             name: "",
             type: "bool",
-          },
-        ],
-        stateMutability: "view",
-        type: "function",
-      },
-      {
-        inputs: [],
-        name: "pred",
-        outputs: [
-          {
-            internalType: "contract IERC20Upgradeable",
-            name: "",
-            type: "address",
           },
         ],
         stateMutability: "view",
@@ -3702,8 +3646,13 @@ const config = {
         inputs: [
           {
             internalType: "uint256[]",
-            name: "_ids",
+            name: "_indexes",
             type: "uint256[]",
+          },
+          {
+            internalType: "address[]",
+            name: "_tokens",
+            type: "address[]",
           },
         ],
         name: "removeTokens",
@@ -3823,11 +3772,11 @@ const config = {
         inputs: [
           {
             internalType: "uint256",
-            name: "_oracleUpdateAllowance",
+            name: "_tokenMaxBet",
             type: "uint256",
           },
         ],
-        name: "setOracleUpdateAllowance",
+        name: "setTokenMaxBet",
         outputs: [],
         stateMutability: "nonpayable",
         type: "function",
@@ -3840,31 +3789,11 @@ const config = {
             type: "address[]",
           },
           {
-            internalType: "address[]",
-            name: "_oracles",
-            type: "address[]",
+            internalType: "int256[]",
+            name: "prices",
+            type: "int256[]",
           },
         ],
-        name: "setOracles",
-        outputs: [],
-        stateMutability: "nonpayable",
-        type: "function",
-      },
-      {
-        inputs: [
-          {
-            internalType: "uint256",
-            name: "_tokenMaxBet",
-            type: "uint256",
-          },
-        ],
-        name: "setTokenMaxBet",
-        outputs: [],
-        stateMutability: "nonpayable",
-        type: "function",
-      },
-      {
-        inputs: [],
         name: "startRound",
         outputs: [],
         stateMutability: "nonpayable",
@@ -3878,25 +3807,6 @@ const config = {
             internalType: "uint256",
             name: "",
             type: "uint256",
-          },
-        ],
-        stateMutability: "view",
-        type: "function",
-      },
-      {
-        inputs: [
-          {
-            internalType: "uint256",
-            name: "",
-            type: "uint256",
-          },
-        ],
-        name: "tokens",
-        outputs: [
-          {
-            internalType: "address",
-            name: "",
-            type: "address",
           },
         ],
         stateMutability: "view",
@@ -3994,11 +3904,16 @@ const config = {
         inputs: [
           {
             internalType: "address",
-            name: "winner",
+            name: "preder",
             type: "address",
           },
+          {
+            internalType: "uint256",
+            name: "round",
+            type: "uint256",
+          },
         ],
-        name: "wonLastRound",
+        name: "wonRound",
         outputs: [
           {
             internalType: "bool",
@@ -6297,7 +6212,7 @@ const config = {
     PancakeFactory: "0xB7926C0430Afb07AA7DEfDE6DA862aE0Bde767bc",
     // IPO
     IPO1: "0x7b8aD6d7560FAcd1959cfb4b4163D7d297c4bFc0",
-    Prediction: "0x087a29a89fDae1Ff469Bae4518BCA9dE9fAeD13e",
+    Prediction: "0xEFcd8Cc534e2130FC7aCB7CE47A12772fc5f5439",
     loserPool: "0x8148A3348c593B746ECB019Cde9bb2a982fde569",
     winnerPool: "0x85A71c3F2cF2Cc89a46C28f4b33feB2EBaed86bf",
     BNBPool: "0x916CCE7b3b6F06868f200D6fa137Fa827640234B",

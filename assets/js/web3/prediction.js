@@ -25,6 +25,7 @@ async function populateUI(){
   if(util.closeTimestamp.toNumber() <= (Date.now()/1000)){
     document.querySelector("#prediction-section .predict").classList.add("ended");
   }
+  document.querySelector("body").classList.remove("loading");
   let h = document.querySelector(".predict").offsetHeight;
   document.querySelector(".chart iframe").height = h;
 }
@@ -60,10 +61,10 @@ function renderTokenInfo(){
 async function renderBetInfo(){
   const container = document.querySelector(".predict-box .pred-needed");
   const bet = document.querySelector(".predict-box .pred-balance");
-  container.textContent = util.betAmount + " PRED";
+  container.textContent = util.betAmount + " CRP";
   const balance = ethers.utils.formatUnits(await util.getBalance(util.pred));
   util.balance = balance;
-  bet.textContent = (+balance).toFixed(4) + " PRED Available";
+  bet.textContent = (+balance).toFixed(4) + " CRP Available";
   if((await util.allowance(util.pred)).gt(ethers.utils.parseUnits(util.betAmount))){
     document.querySelector("body").classList.add("enabled");
   };
@@ -230,14 +231,14 @@ function setPredictionRows(predictions){
       <td>$${prediction.lockedPrice.toFixed(2)}</td>
       <td>$${prediction.closePrice.toFixed(2)}</td>
       <td>${ prediction.bet === "0" ?
-        '<img src="assets/front_n/images/icons/trending-green-up.svg" alt="up">' :
-        '<img src="assets/front_n/images/icons/trending-red-down.svg" alt="down">'
+        '<img src="assets/img/icons/trending-green-up.svg" alt="up">' :
+        '<img src="assets/img/icons/trending-red-down.svg" alt="down">'
         }
       </td>
       <td>
-        <img src="assets/front_n/images/icons/trending-red-down.svg" alt="">
+        <img src="assets/img/icons/trending-red-down.svg" alt="">
         ${prediction.bears}%
-        <img src="assets/front_n/images/icons/trending-green-up.svg" alt="up">
+        <img src="assets/img/icons/trending-green-up.svg" alt="up">
         ${prediction.bulls}%
       </td>
       <td>
@@ -256,8 +257,8 @@ function setPredictionRows(predictions){
       ${prediction.closePrice !== 0 ?(
         (prediction.closePrice > prediction.lockedPrice && prediction.bet === "0")
         || (prediction.closePrice < prediction.lockedPrice && prediction.bet === "1") ?
-        '<a href="./staking.html" class="earn won">Earn PRED</a>' :
-        '<a href="./staking.html" class="earn lost">Earn BID</a>' 
+        '<a href="./staking.html" class="earn won">Earn CRP</a>' :
+        '<a href="./staking.html" class="earn lost">Earn MMF</a>' 
       ) :
         '<span>-</span>'
       }
@@ -289,13 +290,13 @@ function setPredictionCards(predictions){
     <div><span>Locked Price</span><span>$${prediction.lockedPrice.toFixed(2)}</span></div>
     <div><span>Closing Price</span><span>$${prediction.closePrice.toFixed(2)}</span></div>
     <div><span>My prediction</span>${ prediction.bet === "0" ?
-      '<img src="assets/front_n/images/icons/trending-green-up.svg" alt="up">' :
-      '<img src="assets/front_n/images/icons/trending-red-down.svg" alt="down">'
+      '<img src="assets/img/icons/trending-green-up.svg" alt="up">' :
+      '<img src="assets/img/icons/trending-red-down.svg" alt="down">'
     }</div>
     <div><span>Stats</span><span>
-      <img src="assets/front_n/images/icons/trending-red-down.svg" alt="down"> 
+      <img src="assets/img/icons/trending-red-down.svg" alt="down"> 
         ${prediction.bears}%
-      <img src="assets/front_n/images/icons/trending-green-up.svg" alt="up"> 
+      <img src="assets/img/icons/trending-green-up.svg" alt="up"> 
         ${prediction.bulls}%
       </span></div>
     <div>
@@ -319,8 +320,8 @@ function setPredictionCards(predictions){
       ${prediction.closePrice !== 0 ?(
         (prediction.closePrice > prediction.lockedPrice && prediction.bet === "0")
         || (prediction.closePrice < prediction.lockedPrice && prediction.bet === "1") ?
-        '<a class="earn won" href="./staking.html">Earn PRED</a>' :
-        '<a href="./staking.html" class="earn lost">Earn BID</a>' 
+        '<a class="earn won" href="./staking.html">Earn CRP</a>' :
+        '<a href="./staking.html" class="earn lost">Earn MMF</a>' 
       ) :
         ''
       }  
