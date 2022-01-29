@@ -41,7 +41,10 @@ async function start(walletProvider) {
   provider.off("block");
 
   const proceed = await initUI(await signer.getAddress());
-  if (proceed === false) return;
+  if (proceed === false) {
+    useDefaultProvider();
+    return;
+  }
   await initContracts(signer, provider);
 
   if(typeof initPredictionPool !== "undefined"){

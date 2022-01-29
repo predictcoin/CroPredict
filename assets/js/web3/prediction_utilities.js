@@ -22,7 +22,13 @@ Util.prototype.initialize = async function() {
   await this.pred.initialize(config.addresses.PRED, config.abis.ERC20, this.signer);
   await this.prediction.initialize(config.addresses.Prediction, config.abis.Prediction, this.signer);
   const currentRound = await this.prediction.getCurrentRound();
+  if(currentRound.toString() === "0") {
+    this.currentRound = {epoch: "0"};
+    return;
+  }
+  console.log(currentRound.toString())
   this.currentRound = await this.prediction.getRound(currentRound);
+  console.log(this.currentRound);
   this.lockedTimestamp = this.currentRound.lockedTimestamp;
   this.closeTimestamp = this.currentRound.closeTimestamp;
   this.intervalSeconds = await this.prediction.intervalSeconds();
