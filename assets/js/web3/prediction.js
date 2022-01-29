@@ -35,6 +35,7 @@ function fillTotal_APR(){
     document
       .querySelector("#prediction-section .predict")
       .classList.add("ended");
+    document.querySelector("body").classList.remove("loading");
     return;
   }
   setProgress();
