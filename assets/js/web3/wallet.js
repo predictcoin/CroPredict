@@ -25,13 +25,11 @@ window.addEventListener("load", async () => {
 
 async function useDefaultProvider(){
   let provider = ethers.getDefaultProvider(config.providerEndpoint);
-  console.log(config.providerEndpoint);
   await initContracts(provider, provider);
+
   if(typeof initPredictionPool !== "undefined"){
-    
     winnerUtil = await initPredictionPool(provider, provider, WinnerPool, "winnerPool");
     loserUtil = await initPredictionPool(provider, provider, LoserPool, "loserPool");
-    BNBUtil = await initPredictionPool(provider, provider, BNBPool, "BNBPool");
   }
   
   await fillTotal_APR();
@@ -50,7 +48,6 @@ async function start(walletProvider) {
   if(typeof initPredictionPool !== "undefined"){
     winnerUtil = await initPredictionPool(signer, provider, WinnerPool, "winnerPool");
     loserUtil = await initPredictionPool(signer, provider, LoserPool, "loserPool");
-    BNBUtil = await initPredictionPool(signer, provider, BNBPool, "BNBPool");
   }
 
   await populateUI();

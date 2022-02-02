@@ -25,7 +25,6 @@
   <script src="assets/js/jquery.min.js"></script>
   <script src="assets/js/gijgo.min.js"></script>
   <!-- <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script> -->
-  <link href="unpkg.com/gijgo%401.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
   <!-- Etherjs -->
   <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js" type="application/javascript"></script>
   <!-- Validate -->
@@ -98,7 +97,6 @@
                 </span>
               </a>
             </li>
-            <!-- 
             <li class="nav-item ">
               <a class="nav-link" href="voting.html">
                 <span class="navIcon">
@@ -214,10 +212,10 @@
       </div> -->
     </div>
 
-    <!-- <section class="staking-section--headings">
+    <section class="staking-section--headings">
       <span class="live-tab">Live Pools</span>
       <span class="past-tab">Past Pools</span>
-    </section> -->
+    </section>
 
     <div class="inner card-container live-pools">
       <div class="web3-card loading farm not-enabled" data-pool="0">
@@ -298,17 +296,16 @@
         </div>
       </div>
 
-      <!-- <div class="web3-card loading not-enabled prediction-pool winner" data-pool="0">
+      <div class="web3-card loading not-enabled prediction-pool hide winner" data-pool="0">
         <div class="web3-card__heading">
-          <div class="lpimg">
-            <img src="images/pp.png" class="first-lpimg lefticn" alt="predictpool">
-            <img src="images/question.svg" class="first-lpimg quest" data-toggle="tooltip" data-placement="bottom"
-              title="To gain access to the Predict Pool, you have to predict on any of the coins on predictcoin.finance/prediction between 13:00 UTC to 14:00 UTC every Monday.
+          <div class="lpimg-container">
+            <img src="assets/img/coins/crp.png"  alt="predictpool">
+            <img src="assets/img/question.svg" class="first-lpimg quest" data-toggle="tooltip" data-placement="bottom"
+              title="To gain access to the Predict Pool, you have to predict on any of the coins on cropredict.finance/prediction between 13:00 UTC to 14:00 UTC every Monday.
 
             Predict Pool launches every weekend on predictcoin.finance/staking. Winners & Losers have 7 days to earn their rewards with the wallet they predicted with."
               alt="tip">
             <br>
-            <button id="maxbtn">Max 500 PRED</button>
           </div>
           <div>
             <h4 class="title">Round <span class="epoch">#0</span></h4>
@@ -330,10 +327,14 @@
             </span>
           </li>
           <li>
-            <span>Stake</span><span>PRED
+            <span>Stake</span><span>CRP
             </span>
           </li>
-          <li><span>Earn</span><span>PRED</span></li>
+          <li><span>Earn</span><span>CRP</span></li>
+          <li>
+            <span>Max Deposit</span><span>1000 CRP
+            </span>
+          </li>
           <li class="wallet-connected "><span>Earned</span><span>
               <div class="ph-item loading">
                 <div class="ph-picture"></div>
@@ -347,7 +348,7 @@
         </ul>
         <div class="web3-card__amount contract-enabled wallet-connected ">
           <div>
-            <span>PRED Staked</span>
+            <span>CRP Staked</span>
             <span class="staked">0.001</span>
           </div>
           <div>
@@ -370,7 +371,7 @@
 
         <div class="web3-card__bottom">
           <p>Details</p>
-          <div>Total stacked:
+          <div>Total staked:
             <div class="ph-item loading">
               <div class="ph-picture"></div>
             </div>
@@ -379,18 +380,16 @@
           <a href="http://BscScan.com/" class="contract-link">View contract</a>
         </div>
       </div>
-      <div class="web3-card loading not-enabled prediction-pool loser" data-pool="0">
+      <div class="web3-card loading not-enabled prediction-pool hide loser" data-pool="0">
         <div class="web3-card__heading">
-          <div class="lpimg">
-            <img src="images/bd.png" class="first-lpimg lefticnbid" alt="predictpool">
-            <img src="images/question.svg" class="first-lpimg quest" data-toggle="tooltip" data-placement="bottom"
-              title="To gain access to the Predict Pool, you have to predict on any of the coins on predictcoin.finance/prediction between 13:00 UTC to 14:00 UTC every Monday.
+            <div class="lpimg-container">
+              <img src="assets/img/coins/meerkat.png" alt="predictpool">
+              <img src="assets/img/question.svg" class="first-lpimg quest" data-toggle="tooltip" data-placement="bottom"
+                title="To gain access to the Predict Pool, you have to predict on any of the coins on cropredict.finance/prediction between 13:00 UTC to 14:00 UTC every Monday.
+            Predict Pool launches every weekend on predictcoin.finance/staking. Winners & Losers have 7 days to earn their rewards with the wallet they predicted with."
+                alt="tip">
+            </div>
 
-          Predict Pool launches every weekend on predictcoin.finance/staking. Winners & Losers have 7 days to earn their rewards with the wallet they predicted with."
-              alt="tip">
-            <br>
-            <button id="maxbtn">Max 500 PRED</button>
-          </div>
           <div>
             <h4 class="title">Round <span class="epoch">#0</span></h4>
             <br>
@@ -411,10 +410,14 @@
             </span>
           </li>
           <li>
-            <span>Stake</span><span>PRED
+            <span>Stake</span><span>CRP
             </span>
           </li>
-          <li><span>Earn</span><span>BID</span></li>
+          <li><span>Earn</span><span>MMF</span></li>
+          <li>
+            <span>Max Deposit</span><span>1000 CRP
+            </span>
+          </li>
           <li class="wallet-connected "><span>Earned</span><span>
               <div class="ph-item loading">
                 <div class="ph-picture"></div>
@@ -428,7 +431,7 @@
         </ul>
         <div class="web3-card__amount contract-enabled wallet-connected ">
           <div>
-            <span>PRED Staked</span>
+            <span>CRP Staked</span>
             <span class="staked">0.001</span>
           </div>
           <div>
@@ -451,7 +454,7 @@
 
         <div class="web3-card__bottom">
           <p>Details</p>
-          <div>Total stacked:
+          <div>Total staked:
             <div class="ph-item loading">
               <div class="ph-picture"></div>
             </div>
@@ -459,7 +462,7 @@
           </div>
           <a href="http://BscScan.com/" class="contract-link">View contract</a>
         </div>
-      </div> -->
+      </div>
     </div>
 
     <div class="inner card-container past-pools pages empty">
@@ -715,13 +718,16 @@
     <script src="assets/js/web3/PancakeRouterContract.js"></script>
     <script src="assets/js/web3/farm_utilities.js"></script>
     <script src="assets/js/web3/stake.js"></script>
-    <!-- <script src="assets/js/web3/PredictionPoolContracts.js"></script>
+    <script src="assets/js/web3/PredictionPoolContracts.js"></script>
     <script src="assets/js/web3/predictionPool_general.js"></script>
     <script src="assets/js/web3/predictionPool.js"></script>
-    <script src="assets/js/web3/predictionPool_utilities.js"></script> -->
+    <script src="assets/js/web3/predictionPool_utilities.js"></script>
     <script src="assets/js/web3/wallet.js"></script>
     <script src="assets/js/web3/farm_general.js"></script>
     <style>
+      .prediction-pool.hide{
+        display: none;
+      }
       .sizeimg {
         border-radius: 30px;
         display: block;

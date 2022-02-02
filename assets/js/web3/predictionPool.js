@@ -58,7 +58,7 @@ async function populatePredictionModal(event, util) {
   const modalId = event.target.dataset.target;
   const modal = document.querySelector(`${modalId}`);
   modal.dataset.pool = pId;
-  modal.dataset.prediction = typeof util.farm.instance.pendingBID !== "undefined" ? "loser": "winner";
+  modal.dataset.prediction = typeof util.farm.instance.pendingRewardToken !== "undefined" ? "loser": "winner";
   let canStake;
   if(modal.dataset.prediction === "loser"){
     canStake = await util.lostRound(util.pools[pId].epoch);
@@ -88,7 +88,7 @@ async function populatePredictionModal(event, util) {
     staked = ethers.utils.formatUnits(staked, 18);
     stakedEle.textContent = formatNumber(staked);
     const title = modal.querySelector(".modal-title");
-    title.textContent = "Unstake PRED Token";
+    title.textContent = "Unstake CRP Token";
   } else {
     // enter balance
     let balEle = modal.querySelector(".balance");
@@ -96,7 +96,7 @@ async function populatePredictionModal(event, util) {
     bal = ethers.utils.formatUnits(bal, 18);
     balEle.textContent = formatNumber(bal);
     const title = modal.querySelector(".modal-title");
-      title.textContent = "Stake PRED Token";
+      title.textContent = "Stake CRP Token";
   }
 }
 
@@ -105,7 +105,7 @@ async function getPastPools(){
   const table = document.querySelector(".past-pools .table");
   if(table.classList.contains("filled")) return;
   table.classList.add("filled");
-  const utils = [loserUtil, winnerUtil, BNBUtil];
+  const utils = [loserUtil, winnerUtil];
   for(let  higherIndex = 0; higherIndex < utils.length; higherIndex++){
     
     const util = utils[higherIndex];
@@ -118,14 +118,10 @@ async function getPastPools(){
       switch(higherIndex){
         case(1):
           pending = await util.pendingPred(i);
-          data.icon = '<img src="assets/front_n/images/coins/pred.svg" alt="pred-icon">';
-          break;
-        case(2):
-          pending = await util.pendingBNB(i);
-          data.icon = '<img src="assets/front_n/images/coins/bnb.png" alt="pred-icon">';
+          data.icon = '<img src="assets/img/coins/crp.png" alt="pred-icon">';
           break;
         default:
-          data.icon = '<img src="assets/front_n/images/coins/BID.png" alt="pred-icon">';
+          data.icon = '<img src="assets/img/coins/meerkat.png" alt="pred-icon">';
           pending = await util.pendingBID(i);
       }
       data.epoch = poolInfo.epoch.toString();

@@ -4,23 +4,36 @@ function changeTab(e) {
 }
 
 async function fillPrediction_APR(){
-  let predPrice = (
-    await util.getAmountsOut(
-      ethers.utils.parseUnits("1", 18),
-      config.addresses.PRED,
-      config.addresses.BUSD
-    )
-  )[1];
+  if(Object.keys(loserUtil.pools).length !== 0 || Object.keys(winnerUtil.pools).length !== 0){
+    document.querySelectorAll(".prediction-pool").forEach(poolEle => {
+      poolEle.classList.remove("hide");
+    });
+  }else{
+    return;
+  }
+
+  let predPrice =
+    config.chainId === 338
+      ? ethers.BigNumber.from("1000000000000000000")
+      : (
+          await util.getAmountsOut(
+            ethers.utils.parseUnits("1", 18),
+            config.addresses.PRED,
+            config.addresses.USDT
+          )
+        )[1];
       
   // let bidPrice = ethers.BigNumber.from("57414222109677671");
-  let bidPrice = (
-    await util.getAmountsOutAutoShark(
-      ethers.utils.parseUnits("1", 18),
-      config.addresses.BID,
-      config.addresses.WBNB,
-      config.addresses.BUSD
-    )
-  )[2];
+  let bidPrice =
+    config.chainId === 338
+      ? ethers.BigNumber.from("1000000000000000000")
+      : (
+          await util.getAmountsOut(
+            ethers.utils.parseUnits("1", 18),
+            config.addresses.MMF,
+            config.addresses.USDT
+          )
+        )[2];
 
   const pred_bidPrice = predPrice.div(bidPrice);
 
@@ -44,28 +57,42 @@ async function fillPrediction_APR(){
 }
 
 async function populatePredictionUI(){
-  let predPrice = (
-    await util.getAmountsOut(
-      ethers.utils.parseUnits("1", 18),
-      config.addresses.PRED,
-      config.addresses.BUSD
-    )
-  )[1];
-  
+  if (
+    Object.keys(loserUtil.pools).length !== 0 ||
+    Object.keys(winnerUtil.pools).length !== 0
+  ) {
+    document.querySelectorAll(".prediction-pool").forEach((poolEle) => {
+      poolEle.classList.remove("hide");
+    });
+  } else {
+    return;
+  }
+  let predPrice =
+    config.chainId === 338
+      ? ethers.BigNumber.from("1000000000000000000")
+      : (
+          await util.getAmountsOut(
+            ethers.utils.parseUnits("1", 18),
+            config.addresses.PRED,
+            config.addresses.USDT
+          )
+        )[1];
+
   // let bidPrice = ethers.BigNumber.from("57414222109677671");
-  let bidPrice = (
-    await util.getAmountsOutAutoShark(
-      ethers.utils.parseUnits("1", 18),
-      config.addresses.BID,
-      config.addresses.WBNB,
-      config.addresses.BUSD
-    )
-  )[2];
+  let bidPrice =
+    config.chainId === 338
+      ? ethers.BigNumber.from("1000000000000000000")
+      : (
+          await util.getAmountsOut(
+            ethers.utils.parseUnits("1", 18),
+            config.addresses.MMF,
+            config.addresses.USDT
+          )
+        )[2];
 
   const pred_bidPrice = predPrice.div(bidPrice);
   predPrice = ethers.utils.formatUnits(predPrice, 18);
   bidPrice = ethers.utils.formatUnits(bidPrice, 18);
-
 
   const loserEle = document.querySelector(".prediction-pool.loser");
   const winnerEle = document.querySelector(".prediction-pool.winner");
