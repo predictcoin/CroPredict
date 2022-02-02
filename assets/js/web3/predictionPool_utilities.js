@@ -147,8 +147,8 @@ PredictionUtil.prototype.allowance = async function(id){
 //   return await this.farm.deposit(id, String(amount));
 // }
 
-PredictionUtil.prototype.getAmountsOut = async function (amountIn, PRED, BUSD){
-  return await this.PancakeRouter.getAmountsOut(amountIn, [PRED, BUSD])
+PredictionUtil.prototype.getAmountsOut = async function (amountIn, ...tokens){
+  return await this.PancakeRouter.getAmountsOut(amountIn, tokens)
 }
 
 PredictionUtil.prototype.totalSupply = async function(token){

@@ -47,6 +47,7 @@ async function start(walletProvider) {
 
   if(typeof initPredictionPool !== "undefined"){
     winnerUtil = await initPredictionPool(signer, provider, WinnerPool, "winnerPool");
+
     loserUtil = await initPredictionPool(signer, provider, LoserPool, "loserPool");
   }
 
