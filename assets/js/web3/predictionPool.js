@@ -154,7 +154,7 @@ async function withdrawPastPool(pool, amount, util){
   let tx = async () => await util.withdraw(pool, amount);
   await sendTx(
     tx,
-    `Successfully withdrew ${ethers.utils.formatUnits(amount, 18)} PRED`,
-    `Failed to withdraw ${ethers.utils.formatUnits(amount, 18)} PRED`
+    `Successfully withdrew ${ethers.utils.formatUnits(amount, 18)} CRP`,
+    `Failed to withdraw ${ethers.utils.formatUnits(amount, 18)} CRP`
   );
 }
