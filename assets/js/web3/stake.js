@@ -6,7 +6,7 @@ async function populateCard(card) {
   // dollar equivalent of rewards
   let dollarValue =
     config.chainId === 338
-      ? "1000000000000000000"
+      ? "1000000"
       : (
           await util.getAmountsOut(
             ethers.utils.parseUnits("1", 18),
@@ -147,7 +147,7 @@ async function renderAPR(card, id, res, dollarValue) {
       const earnedPred = poolPredPerYr.div(util.farm.totalAllocPoint);
       let dollarValue =
         config.chainId === 338
-          ? "1000000000000000000"
+          ? "1"
           : (
               await util.getAmountsOut(
                 ethers.utils.parseUnits("1", 18),

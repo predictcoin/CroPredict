@@ -4012,6 +4012,19 @@ const config = {
         anonymous: false,
         inputs: [
           {
+            indexed: false,
+            internalType: "address",
+            name: "operator",
+            type: "address",
+          },
+        ],
+        name: "NewOperatorAddress",
+        type: "event",
+      },
+      {
+        anonymous: false,
+        inputs: [
+          {
             indexed: true,
             internalType: "address",
             name: "previousOwner",
@@ -4094,6 +4107,32 @@ const config = {
       {
         inputs: [],
         name: "BONUS_MULTIPLIER",
+        outputs: [
+          {
+            internalType: "uint256",
+            name: "",
+            type: "uint256",
+          },
+        ],
+        stateMutability: "view",
+        type: "function",
+      },
+      {
+        inputs: [],
+        name: "CRP",
+        outputs: [
+          {
+            internalType: "contract IERC20Upgradeable",
+            name: "",
+            type: "address",
+          },
+        ],
+        stateMutability: "view",
+        type: "function",
+      },
+      {
+        inputs: [],
+        name: "CRPPerBlock",
         outputs: [
           {
             internalType: "uint256",
@@ -4201,13 +4240,18 @@ const config = {
       {
         inputs: [
           {
-            internalType: "contract IBEP20",
-            name: "_pred",
+            internalType: "address",
+            name: "_operator",
+            type: "address",
+          },
+          {
+            internalType: "contract IERC20Upgradeable",
+            name: "_CRP",
             type: "address",
           },
           {
             internalType: "uint256",
-            name: "_predPerBlock",
+            name: "_CRPPerBlock",
             type: "uint256",
           },
           {
@@ -4217,7 +4261,7 @@ const config = {
           },
           {
             internalType: "uint256",
-            name: "_maxPredDeposit",
+            name: "_maxCRPDeposit",
             type: "uint256",
           },
           {
@@ -4226,7 +4270,7 @@ const config = {
             type: "address",
           },
           {
-            internalType: "contract IPrediction",
+            internalType: "contract Prediction",
             name: "_prediction",
             type: "address",
           },
@@ -4262,12 +4306,25 @@ const config = {
       },
       {
         inputs: [],
-        name: "maxPredDeposit",
+        name: "maxCRPDeposit",
         outputs: [
           {
             internalType: "uint256",
             name: "",
             type: "uint256",
+          },
+        ],
+        stateMutability: "view",
+        type: "function",
+      },
+      {
+        inputs: [],
+        name: "operatorAddress",
+        outputs: [
+          {
+            internalType: "address",
+            name: "",
+            type: "address",
           },
         ],
         stateMutability: "view",
@@ -4319,7 +4376,7 @@ const config = {
             type: "address",
           },
         ],
-        name: "pendingPred",
+        name: "pendingCRP",
         outputs: [
           {
             internalType: "uint256",
@@ -4352,7 +4409,7 @@ const config = {
           },
           {
             internalType: "uint256",
-            name: "accPredPerShare",
+            name: "accCRPPerShare",
             type: "uint256",
           },
           {
@@ -4384,36 +4441,10 @@ const config = {
       },
       {
         inputs: [],
-        name: "pred",
-        outputs: [
-          {
-            internalType: "contract IBEP20",
-            name: "",
-            type: "address",
-          },
-        ],
-        stateMutability: "view",
-        type: "function",
-      },
-      {
-        inputs: [],
-        name: "predPerBlock",
-        outputs: [
-          {
-            internalType: "uint256",
-            name: "",
-            type: "uint256",
-          },
-        ],
-        stateMutability: "view",
-        type: "function",
-      },
-      {
-        inputs: [],
         name: "prediction",
         outputs: [
           {
-            internalType: "contract IPrediction",
+            internalType: "contract Prediction",
             name: "",
             type: "address",
           },
@@ -4445,11 +4476,37 @@ const config = {
         inputs: [
           {
             internalType: "uint256",
-            name: "_maxPredDeposit",
+            name: "_maxCRPDeposit",
             type: "uint256",
           },
         ],
-        name: "setMaxPredDeposit",
+        name: "setMaxCRPDeposit",
+        outputs: [],
+        stateMutability: "nonpayable",
+        type: "function",
+      },
+      {
+        inputs: [
+          {
+            internalType: "address",
+            name: "_operatorAddress",
+            type: "address",
+          },
+        ],
+        name: "setOperator",
+        outputs: [],
+        stateMutability: "nonpayable",
+        type: "function",
+      },
+      {
+        inputs: [
+          {
+            internalType: "uint256",
+            name: "_allocPoint",
+            type: "uint256",
+          },
+        ],
+        name: "setPoolAllocPoint",
         outputs: [],
         stateMutability: "nonpayable",
         type: "function",
@@ -4823,12 +4880,12 @@ const config = {
       },
       {
         inputs: [],
-        name: "BID",
+        name: "BONUS_MULTIPLIER",
         outputs: [
           {
-            internalType: "contract IBEP20",
+            internalType: "uint256",
             name: "",
-            type: "address",
+            type: "uint256",
           },
         ],
         stateMutability: "view",
@@ -4836,12 +4893,12 @@ const config = {
       },
       {
         inputs: [],
-        name: "BONUS_MULTIPLIER",
+        name: "CRP",
         outputs: [
           {
-            internalType: "uint256",
+            internalType: "contract IERC20Upgradeable",
             name: "",
-            type: "uint256",
+            type: "address",
           },
         ],
         stateMutability: "view",
@@ -4863,19 +4920,6 @@ const config = {
       {
         inputs: [],
         name: "allocPoint",
-        outputs: [
-          {
-            internalType: "uint256",
-            name: "",
-            type: "uint256",
-          },
-        ],
-        stateMutability: "view",
-        type: "function",
-      },
-      {
-        inputs: [],
-        name: "bidPerBlock",
         outputs: [
           {
             internalType: "uint256",
@@ -4962,18 +5006,18 @@ const config = {
             type: "address",
           },
           {
-            internalType: "contract IBEP20",
-            name: "_pred",
+            internalType: "contract IERC20Upgradeable",
+            name: "_CRP",
             type: "address",
           },
           {
-            internalType: "contract IBEP20",
-            name: "_bid",
+            internalType: "contract IERC20Upgradeable",
+            name: "_rewardToken",
             type: "address",
           },
           {
             internalType: "uint256",
-            name: "_bidPerBlock",
+            name: "_rewardTokenPerBlock",
             type: "uint256",
           },
           {
@@ -4983,7 +5027,7 @@ const config = {
           },
           {
             internalType: "uint256",
-            name: "_maxPredDeposit",
+            name: "_maxCRPDeposit",
             type: "uint256",
           },
           {
@@ -4992,7 +5036,7 @@ const config = {
             type: "address",
           },
           {
-            internalType: "contract IPrediction",
+            internalType: "contract Prediction",
             name: "_prediction",
             type: "address",
           },
@@ -5028,7 +5072,7 @@ const config = {
       },
       {
         inputs: [],
-        name: "maxPredDeposit",
+        name: "maxCRPDeposit",
         outputs: [
           {
             internalType: "uint256",
@@ -5098,7 +5142,7 @@ const config = {
             type: "address",
           },
         ],
-        name: "pendingBID",
+        name: "pendingRewardToken",
         outputs: [
           {
             internalType: "uint256",
@@ -5131,7 +5175,7 @@ const config = {
           },
           {
             internalType: "uint256",
-            name: "accBIDPerShare",
+            name: "accRewardTokenPerShare",
             type: "uint256",
           },
           {
@@ -5163,23 +5207,10 @@ const config = {
       },
       {
         inputs: [],
-        name: "pred",
-        outputs: [
-          {
-            internalType: "contract IBEP20",
-            name: "",
-            type: "address",
-          },
-        ],
-        stateMutability: "view",
-        type: "function",
-      },
-      {
-        inputs: [],
         name: "prediction",
         outputs: [
           {
-            internalType: "contract IPrediction",
+            internalType: "contract Prediction",
             name: "",
             type: "address",
           },
@@ -5192,6 +5223,32 @@ const config = {
         name: "renounceOwnership",
         outputs: [],
         stateMutability: "nonpayable",
+        type: "function",
+      },
+      {
+        inputs: [],
+        name: "rewardToken",
+        outputs: [
+          {
+            internalType: "contract IERC20Upgradeable",
+            name: "",
+            type: "address",
+          },
+        ],
+        stateMutability: "view",
+        type: "function",
+      },
+      {
+        inputs: [],
+        name: "rewardTokenPerBlock",
+        outputs: [
+          {
+            internalType: "uint256",
+            name: "",
+            type: "uint256",
+          },
+        ],
+        stateMutability: "view",
         type: "function",
       },
       {
@@ -5211,772 +5268,11 @@ const config = {
         inputs: [
           {
             internalType: "uint256",
-            name: "_maxPredDeposit",
+            name: "_maxCRPDeposit",
             type: "uint256",
           },
         ],
-        name: "setMaxPredDeposit",
-        outputs: [],
-        stateMutability: "nonpayable",
-        type: "function",
-      },
-      {
-        inputs: [
-          {
-            internalType: "address",
-            name: "_operatorAddress",
-            type: "address",
-          },
-        ],
-        name: "setOperator",
-        outputs: [],
-        stateMutability: "nonpayable",
-        type: "function",
-      },
-      {
-        inputs: [
-          {
-            internalType: "uint256",
-            name: "_allocPoint",
-            type: "uint256",
-          },
-        ],
-        name: "setPoolAllocPoint",
-        outputs: [],
-        stateMutability: "nonpayable",
-        type: "function",
-      },
-      {
-        inputs: [],
-        name: "startBlock",
-        outputs: [
-          {
-            internalType: "uint256",
-            name: "",
-            type: "uint256",
-          },
-        ],
-        stateMutability: "view",
-        type: "function",
-      },
-      {
-        inputs: [],
-        name: "totalRewardDebt",
-        outputs: [
-          {
-            internalType: "uint256",
-            name: "",
-            type: "uint256",
-          },
-        ],
-        stateMutability: "view",
-        type: "function",
-      },
-      {
-        inputs: [
-          {
-            internalType: "address",
-            name: "newOwner",
-            type: "address",
-          },
-        ],
-        name: "transferOwnership",
-        outputs: [],
-        stateMutability: "nonpayable",
-        type: "function",
-      },
-      {
-        inputs: [],
-        name: "unpause",
-        outputs: [],
-        stateMutability: "nonpayable",
-        type: "function",
-      },
-      {
-        inputs: [
-          {
-            internalType: "uint256",
-            name: "multiplierNumber",
-            type: "uint256",
-          },
-        ],
-        name: "updateMultiplier",
-        outputs: [],
-        stateMutability: "nonpayable",
-        type: "function",
-      },
-      {
-        inputs: [
-          {
-            internalType: "uint256",
-            name: "_pid",
-            type: "uint256",
-          },
-        ],
-        name: "updatePool",
-        outputs: [],
-        stateMutability: "nonpayable",
-        type: "function",
-      },
-      {
-        inputs: [
-          {
-            internalType: "address",
-            name: "newImplementation",
-            type: "address",
-          },
-        ],
-        name: "upgradeTo",
-        outputs: [],
-        stateMutability: "nonpayable",
-        type: "function",
-      },
-      {
-        inputs: [
-          {
-            internalType: "address",
-            name: "newImplementation",
-            type: "address",
-          },
-          {
-            internalType: "bytes",
-            name: "data",
-            type: "bytes",
-          },
-        ],
-        name: "upgradeToAndCall",
-        outputs: [],
-        stateMutability: "payable",
-        type: "function",
-      },
-      {
-        inputs: [
-          {
-            internalType: "uint256",
-            name: "",
-            type: "uint256",
-          },
-          {
-            internalType: "address",
-            name: "",
-            type: "address",
-          },
-        ],
-        name: "userInfo",
-        outputs: [
-          {
-            internalType: "uint256",
-            name: "amount",
-            type: "uint256",
-          },
-          {
-            internalType: "uint256",
-            name: "rewardDebt",
-            type: "uint256",
-          },
-        ],
-        stateMutability: "view",
-        type: "function",
-      },
-      {
-        inputs: [],
-        name: "wallet",
-        outputs: [
-          {
-            internalType: "contract PredictionWallet",
-            name: "",
-            type: "address",
-          },
-        ],
-        stateMutability: "view",
-        type: "function",
-      },
-      {
-        inputs: [
-          {
-            internalType: "uint256",
-            name: "_pid",
-            type: "uint256",
-          },
-          {
-            internalType: "uint256",
-            name: "_amount",
-            type: "uint256",
-          },
-        ],
-        name: "withdraw",
-        outputs: [],
-        stateMutability: "nonpayable",
-        type: "function",
-      },
-      {
-        inputs: [
-          {
-            internalType: "address",
-            name: "preder",
-            type: "address",
-          },
-          {
-            internalType: "uint256",
-            name: "round",
-            type: "uint256",
-          },
-        ],
-        name: "wonRound",
-        outputs: [
-          {
-            internalType: "bool",
-            name: "",
-            type: "bool",
-          },
-        ],
-        stateMutability: "view",
-        type: "function",
-      },
-    ],
-    BNBPool: [
-      {
-        anonymous: false,
-        inputs: [
-          {
-            indexed: false,
-            internalType: "address",
-            name: "previousAdmin",
-            type: "address",
-          },
-          {
-            indexed: false,
-            internalType: "address",
-            name: "newAdmin",
-            type: "address",
-          },
-        ],
-        name: "AdminChanged",
-        type: "event",
-      },
-      {
-        anonymous: false,
-        inputs: [
-          {
-            indexed: true,
-            internalType: "address",
-            name: "beacon",
-            type: "address",
-          },
-        ],
-        name: "BeaconUpgraded",
-        type: "event",
-      },
-      {
-        anonymous: false,
-        inputs: [
-          {
-            indexed: true,
-            internalType: "address",
-            name: "user",
-            type: "address",
-          },
-          {
-            indexed: true,
-            internalType: "uint256",
-            name: "pid",
-            type: "uint256",
-          },
-          {
-            indexed: false,
-            internalType: "uint256",
-            name: "amount",
-            type: "uint256",
-          },
-        ],
-        name: "Deposit",
-        type: "event",
-      },
-      {
-        anonymous: false,
-        inputs: [
-          {
-            indexed: true,
-            internalType: "address",
-            name: "user",
-            type: "address",
-          },
-          {
-            indexed: true,
-            internalType: "uint256",
-            name: "pid",
-            type: "uint256",
-          },
-          {
-            indexed: false,
-            internalType: "uint256",
-            name: "amount",
-            type: "uint256",
-          },
-        ],
-        name: "EmergencyWithdraw",
-        type: "event",
-      },
-      {
-        anonymous: false,
-        inputs: [
-          {
-            indexed: true,
-            internalType: "address",
-            name: "previousOwner",
-            type: "address",
-          },
-          {
-            indexed: true,
-            internalType: "address",
-            name: "newOwner",
-            type: "address",
-          },
-        ],
-        name: "OwnershipTransferred",
-        type: "event",
-      },
-      {
-        anonymous: false,
-        inputs: [
-          {
-            indexed: false,
-            internalType: "address",
-            name: "account",
-            type: "address",
-          },
-        ],
-        name: "Paused",
-        type: "event",
-      },
-      {
-        anonymous: false,
-        inputs: [
-          {
-            indexed: false,
-            internalType: "address",
-            name: "account",
-            type: "address",
-          },
-        ],
-        name: "Unpaused",
-        type: "event",
-      },
-      {
-        anonymous: false,
-        inputs: [
-          {
-            indexed: true,
-            internalType: "address",
-            name: "implementation",
-            type: "address",
-          },
-        ],
-        name: "Upgraded",
-        type: "event",
-      },
-      {
-        anonymous: false,
-        inputs: [
-          {
-            indexed: true,
-            internalType: "address",
-            name: "user",
-            type: "address",
-          },
-          {
-            indexed: true,
-            internalType: "uint256",
-            name: "pid",
-            type: "uint256",
-          },
-          {
-            indexed: false,
-            internalType: "uint256",
-            name: "amount",
-            type: "uint256",
-          },
-        ],
-        name: "Withdraw",
-        type: "event",
-      },
-      {
-        inputs: [],
-        name: "BONUS_MULTIPLIER",
-        outputs: [
-          {
-            internalType: "uint256",
-            name: "",
-            type: "uint256",
-          },
-        ],
-        stateMutability: "view",
-        type: "function",
-      },
-      {
-        inputs: [
-          {
-            internalType: "uint256",
-            name: "_epoch",
-            type: "uint256",
-          },
-        ],
-        name: "add",
-        outputs: [],
-        stateMutability: "nonpayable",
-        type: "function",
-      },
-      {
-        inputs: [],
-        name: "allocPoint",
-        outputs: [
-          {
-            internalType: "uint256",
-            name: "",
-            type: "uint256",
-          },
-        ],
-        stateMutability: "view",
-        type: "function",
-      },
-      {
-        inputs: [],
-        name: "bnbPerBlock",
-        outputs: [
-          {
-            internalType: "uint256",
-            name: "",
-            type: "uint256",
-          },
-        ],
-        stateMutability: "view",
-        type: "function",
-      },
-      {
-        inputs: [
-          {
-            internalType: "uint256",
-            name: "_pid",
-            type: "uint256",
-          },
-          {
-            internalType: "uint256",
-            name: "_amount",
-            type: "uint256",
-          },
-        ],
-        name: "deposit",
-        outputs: [],
-        stateMutability: "nonpayable",
-        type: "function",
-      },
-      {
-        inputs: [
-          {
-            internalType: "uint256",
-            name: "_pid",
-            type: "uint256",
-          },
-        ],
-        name: "emergencyWithdraw",
-        outputs: [],
-        stateMutability: "nonpayable",
-        type: "function",
-      },
-      {
-        inputs: [
-          {
-            internalType: "uint256",
-            name: "_from",
-            type: "uint256",
-          },
-          {
-            internalType: "uint256",
-            name: "_to",
-            type: "uint256",
-          },
-        ],
-        name: "getMultiplier",
-        outputs: [
-          {
-            internalType: "uint256",
-            name: "",
-            type: "uint256",
-          },
-        ],
-        stateMutability: "view",
-        type: "function",
-      },
-      {
-        inputs: [],
-        name: "getPoolLength",
-        outputs: [
-          {
-            internalType: "uint256",
-            name: "",
-            type: "uint256",
-          },
-        ],
-        stateMutability: "view",
-        type: "function",
-      },
-      {
-        inputs: [
-          {
-            internalType: "address",
-            name: "_operator",
-            type: "address",
-          },
-          {
-            internalType: "contract IBEP20",
-            name: "_pred",
-            type: "address",
-          },
-          {
-            internalType: "uint256",
-            name: "_bnbPerBlock",
-            type: "uint256",
-          },
-          {
-            internalType: "uint256",
-            name: "_startBlock",
-            type: "uint256",
-          },
-          {
-            internalType: "uint256",
-            name: "_maxPredDeposit",
-            type: "uint256",
-          },
-          {
-            internalType: "contract PredictionWallet",
-            name: "_wallet",
-            type: "address",
-          },
-          {
-            internalType: "contract IPrediction",
-            name: "_prediction",
-            type: "address",
-          },
-        ],
-        name: "initialize",
-        outputs: [],
-        stateMutability: "nonpayable",
-        type: "function",
-      },
-      {
-        inputs: [
-          {
-            internalType: "address",
-            name: "preder",
-            type: "address",
-          },
-          {
-            internalType: "uint256",
-            name: "round",
-            type: "uint256",
-          },
-        ],
-        name: "lostRound",
-        outputs: [
-          {
-            internalType: "bool",
-            name: "",
-            type: "bool",
-          },
-        ],
-        stateMutability: "view",
-        type: "function",
-      },
-      {
-        inputs: [],
-        name: "maxPredDeposit",
-        outputs: [
-          {
-            internalType: "uint256",
-            name: "",
-            type: "uint256",
-          },
-        ],
-        stateMutability: "view",
-        type: "function",
-      },
-      {
-        inputs: [],
-        name: "operatorAddress",
-        outputs: [
-          {
-            internalType: "address",
-            name: "",
-            type: "address",
-          },
-        ],
-        stateMutability: "view",
-        type: "function",
-      },
-      {
-        inputs: [],
-        name: "owner",
-        outputs: [
-          {
-            internalType: "address",
-            name: "",
-            type: "address",
-          },
-        ],
-        stateMutability: "view",
-        type: "function",
-      },
-      {
-        inputs: [],
-        name: "pause",
-        outputs: [],
-        stateMutability: "nonpayable",
-        type: "function",
-      },
-      {
-        inputs: [],
-        name: "paused",
-        outputs: [
-          {
-            internalType: "bool",
-            name: "",
-            type: "bool",
-          },
-        ],
-        stateMutability: "view",
-        type: "function",
-      },
-      {
-        inputs: [
-          {
-            internalType: "uint256",
-            name: "_pid",
-            type: "uint256",
-          },
-          {
-            internalType: "address",
-            name: "_user",
-            type: "address",
-          },
-        ],
-        name: "pendingBNB",
-        outputs: [
-          {
-            internalType: "uint256",
-            name: "",
-            type: "uint256",
-          },
-        ],
-        stateMutability: "view",
-        type: "function",
-      },
-      {
-        inputs: [
-          {
-            internalType: "uint256",
-            name: "",
-            type: "uint256",
-          },
-        ],
-        name: "poolInfo",
-        outputs: [
-          {
-            internalType: "uint256",
-            name: "allocPoint",
-            type: "uint256",
-          },
-          {
-            internalType: "uint256",
-            name: "lastRewardBlock",
-            type: "uint256",
-          },
-          {
-            internalType: "uint256",
-            name: "accBNBPerShare",
-            type: "uint256",
-          },
-          {
-            internalType: "uint256",
-            name: "epoch",
-            type: "uint256",
-          },
-          {
-            internalType: "uint256",
-            name: "amount",
-            type: "uint256",
-          },
-        ],
-        stateMutability: "view",
-        type: "function",
-      },
-      {
-        inputs: [],
-        name: "poolLength",
-        outputs: [
-          {
-            internalType: "uint256",
-            name: "",
-            type: "uint256",
-          },
-        ],
-        stateMutability: "view",
-        type: "function",
-      },
-      {
-        inputs: [],
-        name: "pred",
-        outputs: [
-          {
-            internalType: "contract IBEP20",
-            name: "",
-            type: "address",
-          },
-        ],
-        stateMutability: "view",
-        type: "function",
-      },
-      {
-        inputs: [],
-        name: "prediction",
-        outputs: [
-          {
-            internalType: "contract IPrediction",
-            name: "",
-            type: "address",
-          },
-        ],
-        stateMutability: "view",
-        type: "function",
-      },
-      {
-        inputs: [],
-        name: "renounceOwnership",
-        outputs: [],
-        stateMutability: "nonpayable",
-        type: "function",
-      },
-      {
-        inputs: [
-          {
-            internalType: "uint256",
-            name: "_allocPoint",
-            type: "uint256",
-          },
-        ],
-        name: "setAllocPoint",
-        outputs: [],
-        stateMutability: "nonpayable",
-        type: "function",
-      },
-      {
-        inputs: [
-          {
-            internalType: "uint256",
-            name: "_maxPredDeposit",
-            type: "uint256",
-          },
-        ],
-        name: "setMaxPredDeposit",
+        name: "setMaxCRPDeposit",
         outputs: [],
         stateMutability: "nonpayable",
         type: "function",
@@ -6197,57 +5493,13 @@ const config = {
     ],
   },
   // Testnet details
-  // addresses: {
-  //   Farm: "0x248900f2234d0B191F06177Ca2Ff816c825f813c",
-  //   Wallet: "0x5D103b6064935888fFAE0E5DC51BC7582Aa20E6a",
-  //   Implementation: "0xe77a1b16f91dfc0d0737b6768f6096e663b793ec",
-  //   Predcoin: "0x9F486C4029286F73938927be86BECc9A4579857F",
-  //   BUSD: "0x78867BbEeF44f2326bF8DDd1941a4439382EF2A7",
-  //   WBNB: "0xae13d989dac2f0debff460ac112a837c89baa7cd",
-  //   PancakeRouter: "0x145677FC4d9b8F19B5D56d1820c48e0443049a30",
-  //   AutoSharkRouter: "0xB0EeB0632bAB15F120735e5838908378936bd484",
-  //   PRED: "0x9F486C4029286F73938927be86BECc9A4579857F",
-  //   "BUSD-PRED LP": "0x6db5a429398887567e99911b8fe035a636b8bc47",
-  //   "BNB-PRED LP": "0x8fa4fb24b3b0678d1970dc48f69f73216b729be7",
-  //   PancakeFactory: "0xB7926C0430Afb07AA7DEfDE6DA862aE0Bde767bc",
-  //   // IPO
-  //   IPO1: "0x7b8aD6d7560FAcd1959cfb4b4163D7d297c4bFc0",
-  //   Prediction: "0xEFcd8Cc534e2130FC7aCB7CE47A12772fc5f5439",
-  //   loserPool: "0x8148A3348c593B746ECB019Cde9bb2a982fde569",
-  //   winnerPool: "0x85A71c3F2cF2Cc89a46C28f4b33feB2EBaed86bf",
-  //   BNBPool: "0x916CCE7b3b6F06868f200D6fa137Fa827640234B",
-  //   BID: "0x21B1c11d5e7f6B8Cd07be8886b196319fc69e558",
-  //   MMF: "",
-  //   USDT: "",
-  // },
-  // pools: ["PRED", "BUSD-PRED LP", "BNB-PRED LP"],
-  // predictionTokens: {
-  //   CRO: "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE",
-  //   ETH: "0xe44Fd7fCb2b1581822D0c862B68222998a0c299a",
-  //   DOGE: "0x1a8E39ae59e5556B56b76fCBA98d22c9ae557396",
-  //   LTC: "0xC14103C2141E842e228FBaC594579e798616ce7A",
-  //   BTC: "0x062E66477Faf219F25D27dCED647BF57C3107d52",
-  // },
-  // predictionTokenAddresses: {
-  //   "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE": "CRO",
-  //   "0xe44Fd7fCb2b1581822D0c862B68222998a0c299a": "ETH",
-  //   "0x1a8E39ae59e5556B56b76fCBA98d22c9ae557396": "DOGE",
-  //   "0xC14103C2141E842e228FBaC594579e798616ce7A": "LTC",
-  //   "0x062E66477Faf219F25D27dCED647BF57C3107d52": "BTC",
-  // },
-  // chainId: 338,
-  // providerEndpoint: "https://cronos-testnet-3.crypto.org:8545",
-  // etherscanApi:
-  //   "https://api-testnet.bscscan.com/api?module=account&action=tokenbalance&contractaddress=0xB2d7b35539A543bbE4c74965488fFE33c6721f0d&tag=latest&apikey=RQIX47IVTSQCJJNVIIHSG6GGCJTSZASBQ6&address=",
-
-  // Mainnet addresses
   addresses: {
-    Farm: "0x59cd2E492FF59dE3D99C0E034E85c7E51d420643",
-    Wallet: "0x7c52c575A9C302e5B071904214036146108531c2",
-    Implementation: "0x59cd2e492ff59de3d99c0e034e85c7e51d420643",
-    Predcoin: "0x7b8ad6d7560facd1959cfb4b4163d7d297c4bfc0",
-    BUSD: "0x66e428c3f67a68878562e79a0234c1f83c208770",
-    WBNB: "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c",
+    Farm: "0x248900f2234d0B191F06177Ca2Ff816c825f813c",
+    Wallet: "0x5D103b6064935888fFAE0E5DC51BC7582Aa20E6a",
+    Implementation: "0xe77a1b16f91dfc0d0737b6768f6096e663b793ec",
+    Predcoin: "0x9F486C4029286F73938927be86BECc9A4579857F",
+    BUSD: "0x78867BbEeF44f2326bF8DDd1941a4439382EF2A7",
+    WBNB: "0xae13d989dac2f0debff460ac112a837c89baa7cd",
     PancakeRouter: "0x145677FC4d9b8F19B5D56d1820c48e0443049a30",
     AutoSharkRouter: "0xB0EeB0632bAB15F120735e5838908378936bd484",
     PRED: "0x7b8ad6d7560facd1959cfb4b4163d7d297c4bfc0",
@@ -6269,7 +5521,7 @@ const config = {
     loserPool: "0x08Fd84D1f574Fe8d4b0425940DE40B844a679D7A",
     winnerPool: "0x1eE1e446851609E535f0081904238356b03f72A4",
   },
-  pools: ["PRED", "MMF-CRP LP", "BNB-PRED LP"],
+  pools: ["PRED", "BUSD-PRED LP", "BNB-PRED LP"],
   predictionTokens: {
     CRO: "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE",
     ETH: "0xe44Fd7fCb2b1581822D0c862B68222998a0c299a",
@@ -6284,6 +5536,52 @@ const config = {
     "0xC14103C2141E842e228FBaC594579e798616ce7A": "LTC",
     "0x062E66477Faf219F25D27dCED647BF57C3107d52": "BTC",
   },
-  chainId: 25,
-  providerEndpoint: "https://evm-cronos.crypto.org",
+  chainId: 338,
+  providerEndpoint: "https://cronos-testnet-3.crypto.org:8545",
+  etherscanApi:
+    "https://api-testnet.bscscan.com/api?module=account&action=tokenbalance&contractaddress=0xB2d7b35539A543bbE4c74965488fFE33c6721f0d&tag=latest&apikey=RQIX47IVTSQCJJNVIIHSG6GGCJTSZASBQ6&address=",
+
+  // Mainnet addresses
+  // addresses: {
+  //   Farm: "0x59cd2E492FF59dE3D99C0E034E85c7E51d420643",
+  //   Wallet: "0x7c52c575A9C302e5B071904214036146108531c2",
+  //   Implementation: "0x59cd2e492ff59de3d99c0e034e85c7e51d420643",
+  //   Predcoin: "0x7b8ad6d7560facd1959cfb4b4163d7d297c4bfc0",
+  //   BUSD: "0x66e428c3f67a68878562e79a0234c1f83c208770",
+  //   WBNB: "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c",
+  //   PancakeRouter: "0x145677FC4d9b8F19B5D56d1820c48e0443049a30",
+  //   AutoSharkRouter: "0xB0EeB0632bAB15F120735e5838908378936bd484",
+  //   PRED: "0x7b8ad6d7560facd1959cfb4b4163d7d297c4bfc0",
+  //   "BUSD-PRED LP": "0x1338D3C3Cc56f71B45f95F9988e762e4a1EF228D",
+  //   "BNB-PRED LP": "0x3e4dfc6a8f2f1851b0694592d06de5254afe820d",
+  //   "USDT-PRED LP": "0x47893dc78be9231a031e594eb29636d3fcda09b9",
+  //   PancakeFactory: "0xd590cC180601AEcD6eeADD9B7f2B7611519544f4",
+  //   BabyFactory: "0x325E343f1dE602396E256B67eFd1F61C3A6B38Bd",
+  //   // IPO
+  //   IPO1: "0x7b8aD6d7560FAcd1959cfb4b4163D7d297c4bFc0",
+  //   Prediction: "0xC80c40C49a66a930ef42652FFCcBE37b5ed43D67",
+  //   loserPool: "0x5D83EF52661Baa67c9a7d60BF61b8339622603B6",
+  //   winnerPool: "0x29C06EB1320BBc32A6891889A3dF56d8422f5406",
+  //   BID: "0xf9C86001C92fE30Be5Aa5eB3EF4cd191eAE205e4",
+  //   BNBPool: "0x0Dbe9A8C195613A28F128046b341F9501Cd004Bc",
+  //   MMF: "0x97749c9B61F878a880DfE312d2594AE07AEd7656",
+  //   USDT: "0x66e428c3f67a68878562e79A0234c1F83c208770",
+  // },
+  // pools: ["PRED", "MMF-CRP LP", "BNB-PRED LP"],
+  // predictionTokens: {
+  //   BNB: "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE",
+  //   ETH: "0x2170Ed0880ac9A755fd29B2688956BD959F933F8",
+  //   DOGE: "0xbA2aE424d960c26247Dd6c32edC70B295c744C43",
+  //   CAKE: "0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82",
+  //   BTC: "0x7130d2A12B9BCbFAe4f2634d864A1Ee1Ce3Ead9c",
+  // },
+  // predictionTokenAddresses: {
+  //   "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE": "BNB",
+  //   "0x2170Ed0880ac9A755fd29B2688956BD959F933F8": "ETH",
+  //   "0xbA2aE424d960c26247Dd6c32edC70B295c744C43": "DOGE",
+  //   "0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82": "CAKE",
+  //   "0x7130d2A12B9BCbFAe4f2634d864A1Ee1Ce3Ead9c": "BTC",
+  // },
+  // chainId: 25,
+  // providerEndpoint: "https://evm-cronos.crypto.org",
 };

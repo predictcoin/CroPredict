@@ -252,8 +252,20 @@
 .lpimg{
   position: absolute;
 }
+.lpimg-container{
+  display: flex;
+  flex-direction: row !important;
+  align-items: center;
+}
+.lpimg-container .label{
+  width: 6.5rem;
+  height: 4rem;
+}
 .first-lpimg{
   transform: translate(0, -30%);
+}
+.max-500{
+  transform: translate(30px, -30px);
 }
 .lpimg img:not(.first-lpimg){
   transform: translate(-50%, 30%);

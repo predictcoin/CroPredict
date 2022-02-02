@@ -33,7 +33,7 @@ async function fillTotal_APR(){
 
   let dollarValue =
     config.chainId === 338
-      ? "1000000000000000000"
+      ? "1"
       : (
           await util.getAmountsOut(
             ethers.utils.parseUnits("1", 18),

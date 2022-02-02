@@ -254,6 +254,10 @@
     margin-right: 0;
   }
 }
+
+.prediction-pool.hide{
+  display: none;
+}
 #prediction-section .chart .tradingview-widget-container {
   height: 100%;
 }

@@ -17,11 +17,12 @@ PredictionUtil.prototype.initialize = async function(Contract, name) {
 
   await this.farm.initialize(config.addresses[name], config.abis[name], this.signer);
   const poolIndex = this.farm.poolLength.toNumber() - 1;
+  if(poolIndex === -1) return;
   this.pools[poolIndex] = await this.farm.poolInfo(poolIndex);
   this.pools.live = this.pools[poolIndex];
   this.maxPred = name === "winnerPool" || this.farm.instance.maxBIDDeposit === undefined
-    ? await this.farm.instance.maxPredDeposit()
-    : await this.farm.instance.maxBIDDeposit();
+    ? await this.farm.instance.maxCRPDeposit()
+    : await this.farm.instance.maxCRPDeposit();
 
   this.pred = new ERC20();
   await this.pred.initialize(config.addresses.PRED, config.abis.ERC20, this.signer);
