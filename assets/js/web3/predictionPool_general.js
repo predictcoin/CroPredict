@@ -67,6 +67,7 @@ async function populatePredictionUI(){
   } else {
     return;
   }
+
   let predPrice =
     config.chainId === 338
       ? ethers.BigNumber.from("1000000000000000000")
@@ -74,9 +75,10 @@ async function populatePredictionUI(){
           await util.getAmountsOut(
             ethers.utils.parseUnits("1", 18),
             config.addresses.PRED,
+            config.addresses.MMF,
             config.addresses.USDT
           )
-        )[1];
+        )[2];
 
   // let bidPrice = ethers.BigNumber.from("57414222109677671");
   let bidPrice =
@@ -88,7 +90,8 @@ async function populatePredictionUI(){
             config.addresses.MMF,
             config.addresses.USDT
           )
-        )[2];
+        )[1];
+  
 
   const pred_bidPrice = predPrice.div(bidPrice);
   predPrice = ethers.utils.formatUnits(predPrice, 18);
