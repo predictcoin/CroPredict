@@ -54,6 +54,7 @@ function fillTotal_APR(){
 
 function renderTokenInfo(){
   const price = document.querySelector(".locked-position .price");
+  console.log(util[util.token])
   price.textContent = '$'+(util[util.token].lockedPrice.toNumber()/100000000).toFixed(2);
   document.querySelector(".locked-position .date-time").textContent 
     = ((new Date(util.lockedTimestamp.toNumber()* 1000)).toUTCString()).replace("GMT", "UTC");
