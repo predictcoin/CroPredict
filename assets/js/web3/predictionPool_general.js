@@ -19,10 +19,11 @@ async function fillPrediction_APR(){
           await util.getAmountsOut(
             ethers.utils.parseUnits("1", 18),
             config.addresses.PRED,
+            config.addresses.MMF,
             config.addresses.USDT
           )
-        )[1];
-      
+        )[2];
+
   // let bidPrice = ethers.BigNumber.from("57414222109677671");
   let bidPrice =
     config.chainId === 338
@@ -33,7 +34,7 @@ async function fillPrediction_APR(){
             config.addresses.MMF,
             config.addresses.USDT
           )
-        )[2];
+        )[1];
 
   const pred_bidPrice = predPrice.div(bidPrice);
 
