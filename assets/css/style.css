@@ -1037,3 +1037,11 @@ font-weight: 600;
 .socials{
   text-align: center;
 }
+
+.cronos{
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+padding-top: 30px;
+}
