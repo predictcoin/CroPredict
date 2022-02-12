@@ -45,7 +45,6 @@ PredictionUtil.prototype.getStakeApr = async function(id, pred_bnbPrice) {
     totalPredPerYr = this.farm.predPerBlock.mul(17280).mul(365);
   }else{
     totalBIDPerYr = this.farm.bidPerBlock.mul(17280).mul(365);
-    console.log(totalBIDPerYr);
     totalPredPerYr = totalBIDPerYr.div(pred_bnbPrice);
   } 
   const poolPredPerYr = this.pools[id].allocPoint.mul(totalPredPerYr);
