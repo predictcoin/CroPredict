@@ -145,7 +145,7 @@ function zeroPad(num) {
 async function predict (){
   const errorCont = document.querySelector(".predict .error");
   if(util.balance < util.betAmount){
-    errorCont.textContent = "Not enough PRED to predict";
+    errorCont.textContent = "Not enough CRP to predict";
     return;
   }
   if(util[util.token].bets.toNumber() >= util.tokenMaxBet){

@@ -38,8 +38,8 @@ async function fillPrediction_APR(){
 
   const pred_bidPrice = predPrice.toNumber()/bidPrice.toNumber();
 
-  predPrice = ethers.utils.formatUnits(predPrice, 18);
-  bidPrice = ethers.utils.formatUnits(bidPrice, 18);
+  predPrice = ethers.utils.formatUnits(predPrice, 6);
+  bidPrice = ethers.utils.formatUnits(bidPrice, 6);
 
   const loserEle = document.querySelector(".prediction-pool.loser");
   const winnerEle = document.querySelector(".prediction-pool.winner");
@@ -80,6 +80,7 @@ async function populatePredictionUI(){
             config.addresses.USDT
           )
         )[2];
+  
 
   // let bidPrice = ethers.BigNumber.from("57414222109677671");
   let bidPrice =
@@ -92,11 +93,12 @@ async function populatePredictionUI(){
             config.addresses.USDT
           )
         )[1];
-  
 
-  const pred_bidPrice = predPrice.toNumber() / bidPrice.toNumber();
-  predPrice = ethers.utils.formatUnits(predPrice, 18);
-  bidPrice = ethers.utils.formatUnits(bidPrice, 18);
+
+  const pred_bidPrice = predPrice.div(bidPrice);
+  predPrice = ethers.utils.formatUnits(predPrice, 6);
+  bidPrice = ethers.utils.formatUnits(bidPrice, 6);
+
 
   const loserEle = document.querySelector(".prediction-pool.loser");
   const winnerEle = document.querySelector(".prediction-pool.winner");
