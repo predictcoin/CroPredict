@@ -42,7 +42,6 @@ PredictionUtil.prototype.deposit = async function(id, amount) {
 PredictionUtil.prototype.getStakeApr = async function(id, pred_bnbPrice) {
   let totalPredPerYr, poolPredPerYr;
   if(typeof this.farm.predPerBlock !== "undefined"){
-    console.log("we here ", id);
     totalPredPerYr = this.farm.predPerBlock.mul(17280).mul(365);
     poolPredPerYr = this.pools[id].allocPoint.mul(totalPredPerYr);
   }else{
