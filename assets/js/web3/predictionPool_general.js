@@ -36,8 +36,7 @@ async function fillPrediction_APR(){
           )
         )[1];
 
-
-  const pred_bidPrice = predPrice.div(bidPrice);
+  const pred_bidPrice = predPrice.toNumber()/bidPrice.toNumber();
 
   predPrice = ethers.utils.formatUnits(predPrice, 6);
   bidPrice = ethers.utils.formatUnits(bidPrice, 6);
@@ -96,7 +95,7 @@ async function populatePredictionUI(){
         )[1];
 
 
-  const pred_bidPrice = predPrice.div(bidPrice);
+  const pred_bidPrice = predPrice.toNumber() / bidPrice.toNumber();
   predPrice = ethers.utils.formatUnits(predPrice, 6);
   bidPrice = ethers.utils.formatUnits(bidPrice, 6);
 
